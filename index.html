@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rain Relief Survey</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f8fb;color:#17324d;line-height:1.6}
+header{background:linear-gradient(135deg,#1261a0,#1ca6c9);color:white;padding:24px 7%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-size:22px;font-weight:700}
+nav a{color:white;text-decoration:none;margin-left:22px;font-weight:600}
+.hero{padding:80px 7%;background:linear-gradient(135deg,#e8f7ff,#fff);display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}
+.hero h1{font-size:48px;line-height:1.1;margin-bottom:18px}
+.hero p{font-size:19px;color:#49657b;margin-bottom:25px}
+.btn{display:inline-block;background:#1261a0;color:white;border:0;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:700;cursor:pointer}
+.btn.alt{background:white;color:#1261a0;border:2px solid #1261a0;margin-left:8px}
+.card{background:white;border-radius:18px;padding:28px;box-shadow:0 8px 28px #17324d18}
+.rain{font-size:120px;text-align:center}
+section{padding:65px 7%}
+.title{text-align:center;margin-bottom:30px}
+.title h2{font-size:32px}
+.title p{color:#61778a}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.stat{text-align:center;background:white;padding:25px;border-radius:16px;box-shadow:0 6px 20px #17324d12}
+.stat strong{display:block;font-size:34px;color:#1261a0}
+.form-wrap{max-width:800px;margin:auto}
+label{font-weight:700;display:block;margin:16px 0 7px}
+select,input{width:100%;padding:12px;border:1px solid #c7d5df;border-radius:9px;font-size:16px}
+.checks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.check{background:#f5f9fc;padding:12px;border-radius:9px}
+.check input{width:auto;margin-right:8px}
+.notice{background:#fff7df;border-left:5px solid #e0a600;padding:15px;border-radius:8px;margin:18px 0}
+footer{background:#123047;color:white;text-align:center;padding:28px}
+@media(max-width:750px){.hero{grid-template-columns:1fr;padding-top:50px}.hero h1{font-size:36px}.stats{grid-template-columns:1fr}.checks{grid-template-columns:1fr}nav{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🌧️ Rain Relief Survey</div>
+  <nav><a href="#survey">Survey</a><a href="#help">Help</a><a href="#about">About</a></nav>
+</header>
+
+<section class="hero" id="about">
+  <div>
+    <h1>Understand the impact of heavy rain.</h1>
+    <p>A simple community survey to understand whether people need food, clothes, medicine, clean water, shelter or other assistance during heavy rainfall.</p>
+    <a class="btn" href="#survey">Take the Survey</a>
+    <a class="btn alt" href="#help">Request Help</a>
+  </div>
+  <div class="card rain">🌧️<br><span style="font-size:20px">Your response can help identify community needs.</span></div>
+</section>
+
+<section>
+  <div class="title"><h2>What are people facing?</h2><p>We want to understand the most common needs in affected areas.</p></div>
+  <div class="stats">
+    <div class="stat"><strong>🍚</strong>Food</div>
+    <div class="stat"><strong>💊</strong>Medicine</div>
+    <div class="stat"><strong>💧</strong>Clean Water</div>
+  </div>
+</section>
+
+<section id="survey">
+  <div class="title"><h2>Community Survey</h2><p>No Aadhaar number, phone number or unnecessary personal details are requested.</p></div>
+  <div class="card form-wrap">
+    <form onsubmit="submitSurvey(event)">
+      <label for="area">Area / Village / Locality</label>
+      <input id="area" required placeholder="Enter area name">
+
+      <label for="people">Approximate number of affected people</label>
+      <select id="people" required>
+        <option value="">Select</option><option>1–5</option><option>6–10</option><option>11–25</option><option>26–50</option><option>50+</option>
+      </select>
+
+      <label>What problems are you facing?</label>
+      <div class="checks">
+        <label class="check"><input type="checkbox" name="need"> 🍚 Food</label>
+        <label class="check"><input type="checkbox" name="need"> 👕 Clothes</label>
+        <label class="check"><input type="checkbox" name="need"> 💊 Medicine / medical help</label>
+        <label class="check"><input type="checkbox" name="need"> 💧 Drinking water</label>
+        <label class="check"><input type="checkbox" name="need"> 🏠 Shelter</label>
+        <label class="check"><input type="checkbox" name="need"> ⚡ Electricity</label>
+        <label class="check"><input type="checkbox" name="need"> 🚑 Emergency assistance</label>
+        <label class="check"><input type="checkbox" name="need"> Other</label>
+      </div>
+
+      <label for="gov">What help would you like from the government?</label>
+      <select id="gov" required>
+        <option value="">Select assistance</option>
+        <option>Food assistance</option><option>Medical assistance</option><option>Clean drinking water</option>
+        <option>Temporary shelter</option><option>Clothes / essential items</option><option>Other government assistance</option>
+      </select>
+
+      <button class="btn" style="margin-top:22px;width:100%" type="submit">Submit Survey</button>
+      <div id="msg" class="notice" style="display:none">Thank you. Your survey response has been recorded on this demo page.</div>
+    </form>
+  </div>
+</section>
+
+<section id="help">
+  <div class="title"><h2>Need direct assistance?</h2><p>If you are facing a problem and want to request help, use the Google Form.</p></div>
+  <div class="card" style="max-width:650px;margin:auto;text-align:center">
+    <p style="margin-bottom:18px">Replace the button link below with your Google Form link.</p>
+    <a class="btn" href="https://forms.google.com/" target="_blank" rel="noopener">Open Google Form</a>
+    <div class="notice">For urgent emergencies, contact your local emergency services or disaster-management authority.</div>
+  </div>
+</section>
+
+<footer>© 2026 Rain Relief Survey • Community needs survey</footer>
+<script>
+function submitSurvey(e){
+  e.preventDefault();
+  document.getElementById('msg').style.display='block';
+  e.target.reset();
+  window.scrollTo({top:document.getElementById('survey').offsetTop-80,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
